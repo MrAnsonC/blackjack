@@ -1,3 +1,25 @@
+BBBBBBBBBBBBBBBBB           JJJJJJJJJJJJJ        MM         MMM	    AAA
+B::::::::::::::::B          J:::::::::::J        M MM      MM MM   AA AA
+B::::::BBBBBB:::::B         J:::::::::::J	 M  MM    MM   MM AA-A-AA
+BB:::::B     B:::::B             J:::::j  	 M   MM  MM     MA      AA
+  B::::B     B:::::B             J:::::j	 M    MMM     AA MM      AA
+  B::::B     B:::::B   		 J:::::j 	 
+  B::::BBBBBB:::::B    		 J:::::j 	 KK    KKKK EEEEEEE  BBBBBB Y   Y
+  B:::::::::::::BB      	 J:::::j	 KK  KKK    EE	     BB  BB  Y Y
+  B::::BBBBBB:::::B    		 J:::::j	 KKKK	    EEEEE    BBBB     Y
+  B::::B     B:::::B   	 	 J:::::j	 KK  KKK    EE       BB  BB   Y
+  B::::B     B:::::B   		 J:::::j	 KK   KKKK  EEEEEE   BBBBB    Y
+  B::::B     B:::::B             J:::::j	 
+BB:::::BBBBBB::::::B   		J::::::j         HH     HH  SSSSSSSSSS  CCCCCCCCCC
+B:::::::::::::::::B    	       J::::::j		 HH     HH SSSS    SSSS CCC    CCC
+B::::::::::::::::B     	     J::::::j		 HH     HH SSSS        CCC
+BBBBBBBBBBBBBBBBB          J:::::::j             HHHHHHHHH  SSSSsSSSS  CCC
+                          J:::::::j		 HH     HH        SSSS CCC
+		      J::::::::::j		 HH     HH SSSS    SSSS CCC    CCC	  
+jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj		 HH     HH  SSSSSSSSSS  CCCCCCCCCC
+
+
+
 PCV means Personal Computer Version   |||   MV means Mobile Version
 
 Create PCV_1 in 15 of May, 2024. 
