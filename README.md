@@ -46,8 +46,16 @@ Upload MV_2.1 on GitHub in 21 of June, 2024. 0925(NZST, GMT+12)
 -- PCV_7 will be update soon.
 -- Player get same colour of PP, 12:1 available.
 
+Upload PCV_7.1 on GitHub in 21 of June, 2024. 0937(NZST, GMT+12)
+-- Function as same as MV_2.1
+
 =========================================================================
-The latest version:  MV_2.1    PCV_7
+
+Stop support version: MV_1    MV_2    PCV_7
+
+=========================================================================
+
+The latest version:  MV_2.1    PCV_7.1
 
 =========================================================================
 Future target:
