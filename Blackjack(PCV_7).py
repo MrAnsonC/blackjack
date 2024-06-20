@@ -29,7 +29,7 @@ Create MV_1 in 19 of June, 2024.
 -- More easy to run on the mobile. ~~Testing by Xiaomi 13T pro ~~Using app "Coding python"
 
 Upload MV_1 on FB Group "Python" in 20 of June, 2024. 1901(NZT, GMT+12)
--- Link: https://www.facebook.com/groups/python
+-- Link: https://www.facebook.com/groups/python (Update: Post delete)
 
 Upload MV_1 on GitHub in 20 of June, 2024. 1925(NZST, GMT+12)
 
