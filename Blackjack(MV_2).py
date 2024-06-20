@@ -39,8 +39,8 @@ import random
 
 # Define card suits and ranks
 suits = ['♥', '♦', '♣', '♠']
-ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
-##ranks = ['K', 'A']
+##ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+ranks = ['K', 'Q']
 
 # Define card class
 class Card:
@@ -107,15 +107,19 @@ class Player:
         self.money = int(initial_money)
         self.hand = []
         self.current_bet = 0
+        self.current_pp = 0
         self.insurance_bet = 0
 
-    def place_bet(self, amount):
+    def place_bet(self, amount, pp_amount):
         self.current_bet = 0
-        if amount > self.money:
+        self.current_pp = 0
+        if (amount + pp_amount) > self.money:
             print("Insufficient funds!")
             return False
         self.current_bet += amount
+        self.current_pp += pp_amount
         self.money -= amount
+        self.money -= pp_amount
         return True
 
     def clear_hand(self):
@@ -310,6 +314,13 @@ class BlackjackGame:
         player_hand_value = self.player.get_hand_value()
         dealer_hand_value = self.dealer.get_hand_value()
 
+        # Check the player is perfect pair or not
+        if self.player.hand[0].rank == self.player.hand[1].rank and self.player.current_pp != 0:
+            block()
+            print("Congratulation! You get a perfect pair!")
+            self.player.money += self.player.current_pp*5
+            
+
         # Check for dealer blackjack immediately after dealing initial cards
         if self.dealer.hand[1].rank == 'A' and self.dealer.hand[0].get_value() == 10:
             block()
@@ -393,10 +404,20 @@ class BlackjackGame:
 
 # Main program loop
 if __name__ == "__main__":
+    fst_log_in = True
     game = BlackjackGame()
-
+    
     while True:
+        if fst_log_in:
+            fst_log_in = False  # This should be an assignment
+            side_bet_play = True
+            side_bet_choice = input("Do you want to play side-bet? (Y/N)").lower()
+            if side_bet_choice not in ["yes", "y"]:
+                side_bet_play = False
+            print("\n\n\n\n\n\n\n\n\n")
+            
         print(f"Player's Money: {int(game.player.money)}")
+        
         while True:
             try:
                 bet_amount = int(input("Place your bet amount (0 to quit): "))
@@ -406,14 +427,33 @@ if __name__ == "__main__":
                     break  # Valid input, break out of the loop
             except ValueError:
                 print("Invalid input. Enter a valid number.")
-                block()
+                
+        ## Side bet Perfect Pair (PP)
+        if side_bet_play:
+            while True:
+                try:
+                    i_pp_amount = input("Place your Perfect Pair bet: ")
+
+                    ## If user enters nothing, pp_amount = 0
+                    if i_pp_amount == "":
+                        pp_amount = 0
+                    else:
+                        pp_amount = int(i_pp_amount)
+                        
+                    if pp_amount < 0:
+                        print("Please enter a positive number.")
+                    else:
+                        break  # Valid input, break out of the loop
+                except ValueError:
+                    print("Invalid input. Enter a valid number.")
+        else:
+            pp_amount = 0
 
         if bet_amount == 0:
             print("Thanks for playing!")
             break
             
-        if game.player.place_bet(bet_amount):
+        if game.player.place_bet(bet_amount, pp_amount):
             game.play_round()
         else:
             print("Invalid bet amount. Please try again.")
-            block()
