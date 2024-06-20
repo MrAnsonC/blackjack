@@ -29,10 +29,17 @@ Upload MV_1 on GitHub in 20 of June, 2024. 1925(NZT, GMT+12)
 
 Reupload MV_1 on GitHub in 20 of June, 2024. 2050(NZT, GMT+12)
 
+Upload MV_2 on GitHub in 20 of June, 2024. 2319(NZST, GMT+12)
+-- Make the side bet of Perfect Pair(PP), if win, 5:1.
+-- When start the program, will ask you do you want to play side-bet.
+-- Fix the UI problem
+-- Because original PP is using 208 card but this program using 52 cards,
+                          25:1 of same suits and same ranks NOT AVAILABLE
+-- To optimization: If player get same colour of PP, 12:1
 
 =============================================================
 Future:
 1. Make the "Split" function
-2. Accept special side-bet. 21+3 and Perfect Pair(PP)
+2. Accept special side-bet. 21+3 and Match with dealer(MWD)
 3. Make the GUI version
 4. Make it in java and C++
