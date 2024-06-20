@@ -28,19 +28,28 @@ Update to PCV_6 in 17 of June, 2024.
 Create MV_1 in 19 of June, 2024. 
 -- More easy to run on the mobile. ~~Testing by Xiaomi 13T pro ~~Using app "Coding python"
 
-Upload MV_1 on FB Group "Python" in 20 of June, 2024. 1901(NZT, GMT+12) Link: https://www.facebook.com/groups/python
+Upload MV_1 on FB Group "Python" in 20 of June, 2024. 1901(NZT, GMT+12)
+-- Link: https://www.facebook.com/groups/python
 
 Upload MV_1 on GitHub in 20 of June, 2024. 1925(NZST, GMT+12)
 
 Reupload MV_1 on GitHub in 20 of June, 2024. 2050(NZST, GMT+12)
+
+Upload MV_2 on GitHub in 20 of June, 2024. 2317(NZST, GMT+12)
+-- Make the side bet of Perfect Pair(PP), if win, 5:1.
+-- When start the program, will ask you do you want to play side-bet.
+-- Fix the UI problem
+-- Because original PP is using 208 card but this program using 52 cards,
+                          25:1 of same suits and same ranks NOT AVAILABLE
+-- To optimization: If player get same colour of PP, 12:1
 '''
 
 import random
 
 # Define card suits and ranks
 suits = ['♥', '♦', '♣', '♠']
-##ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
-ranks = ['K', 'Q']
+ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+##ranks = ['K', 'Q']
 
 # Define card class
 class Card:
@@ -409,12 +418,12 @@ if __name__ == "__main__":
     
     while True:
         if fst_log_in:
-            fst_log_in = False  # This should be an assignment
+            fst_log_in = False
             side_bet_play = True
             side_bet_choice = input("Do you want to play side-bet? (Y/N)").lower()
             if side_bet_choice not in ["yes", "y"]:
                 side_bet_play = False
-            print("\n\n\n\n\n\n\n\n\n")
+            block(),block(),block(),block(),block()
             
         print(f"Player's Money: {int(game.player.money)}")
         
