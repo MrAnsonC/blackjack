@@ -318,7 +318,7 @@ class BlackjackGame:
 
             if self.player.get_hand_value() == 21:
                 showing_result("BJ", "BJ")
-                print("Player and Dealer is Blackjack! Push (Tie).")
+                print("Player and Dealer are Blackjack! \nIts a Push (Tie).")
                 self.player.money += self.player.current_bet
             else:
                 showing_result(player_hand_value, "BJ")
@@ -365,16 +365,16 @@ class BlackjackGame:
             block()
             block()
             if self.player.insurance_bet > 0:
-                print("\n\t   Dealer has Blackjack!")
+                print("\n\tDealer win Blackjack!\n")
                 showing_result(player_hand_value, "BJ")
                 print("Insurance pays 2:1.")
                 self.player.money += self.player.insurance_bet * 2
             elif choice_bj == "nope":
                 showing_result("BJ", "BJ")
-                print("Dealer has Blackjack. Its a Push (Tie).")
+                print("\nPlayer & Dealer have Blackjack!\n")
                 self.player.money += self.player.current_bet
             else:
-                print("Dealer has Blackjack!")
+                print("\n\tDealer win Blackjack!\n")
                 showing_result(player_hand_value, "BJ")
                 print("Player loses.")
             block_end(), block()
