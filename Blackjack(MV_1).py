@@ -1,29 +1,46 @@
 '''
-Create PCV_1 in 15 of May, 2024. -- Basic Random number -- Win and lost calculation -- Action of Hit, Stand and Double
+Make by HSC
 
-Update to PCV_2 in 21 of May, 2024. -- Suits and ranks seperate random -- Bug: "A" = 1/11. Use the biggest amount
+Create PCV_1 in 15 of May, 2024. 
+-- Basic Random number 
+-- Win and lost calculation 
+-- Action of Hit, Stand and Double
 
-Update to PCV_3 in 24 of May, 2024. -- If dealer get "A" in his face-up card, allow player to buy insurance.
+Update to PCV_2 in 21 of May, 2024. 
+-- Suits and ranks separate random 
+-- Bug: "A" = 1/11. Use the biggest amount
 
-Update to PCV_4 in 02 of June, 2024. -- If player get 21 in their hit, automatic jump to dealer's card page.
+Update to PCV_3 in 24 of May, 2024. 
+-- If dealer get "A" in his face-up card, allow player to buy insurance.
 
-Update to PCV_5 in 11 of June, 2024. -- Bug: If player get Blackjack but dealer get "A", will ask player want to buy insurance or not. The correct situation will be asking player want to win 1:1 or 1:1.5 if dealer is not Blackjack.
+Update to PCV_4 in 02 of June, 2024. 
+-- If player get 21 in their hit, automatic jump to dealer's card page.
 
-Update to PCV_6 in 17 of June, 2024. -- Create layout to convenient watching.
+Update to PCV_5 in 11 of June, 2024. 
+-- Bug: If player get Blackjack but dealer get "A",
+H                will ask player want to buy insurance or not. 
+S		 The correct situation will be asking player
+C                want to win 1:1 or 1:1.5 if dealer is not Blackjack.
 
-Create MV_1 in 19 of June, 2024. -- More easy to run on the mobile. ~~Testing by Xiaomi 13T pro ~~Using app "Coding python"
+Update to PCV_6 in 17 of June, 2024. 
+-- Create layout to convenient watching.
+
+Create MV_1 in 19 of June, 2024. 
+-- More easy to run on the mobile. ~~Testing by Xiaomi 13T pro ~~Using app "Coding python"
 
 Upload MV_1 on FB Group "Python" in 20 of June, 2024. 1901(NZT, GMT+12) Link: https://www.facebook.com/groups/python
 
-Upload MV_1 on Github in 20 of June, 2024. 1925(NZT, GMT+12)
+Upload MV_1 on GitHub in 20 of June, 2024. 1925(NZST, GMT+12)
+
+Reupload MV_1 on GitHub in 20 of June, 2024. 2050(NZST, GMT+12)
 '''
 
 import random
 
 # Define card suits and ranks
 suits = ['♥', '♦', '♣', '♠']
-ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
-##ranks = ['K', 'A']
+##ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+ranks = ['K', 'A']
 
 # Define card class
 class Card:
@@ -258,7 +275,7 @@ class BlackjackGame:
         elif result == 2:  # Player Blackjack
             block()
             showing_result("BJ", dealer_hand_value)
-            print("\n\t   Player wins Blackjack!\n")
+            print("\n\tPlayer win Blackjack!\n")
             self.player.money += self.player.current_bet * 2.5
             block_end(), block()
         else:
@@ -296,21 +313,18 @@ class BlackjackGame:
         # Check for dealer blackjack immediately after dealing initial cards
         if self.dealer.hand[1].rank == 'A' and self.dealer.hand[0].get_value() == 10:
             block()
-            print("Dealer has Blackjack!")
-            
+            print(f"P Hand: {[str(card) for card in self.player.hand]} Total: {self.player.get_hand_value()}")
+            print(f"D Hand: {[str(card) for card in self.dealer.hand]} Total: {self.dealer.get_hand_value()}")
+
             if self.player.get_hand_value() == 21:
-                print(f"P Hand: {[str(card) for card in self.player.hand]} Total: {self.player.get_hand_value()}")
-                print(f"D Hand: {[str(card) for card in self.dealer.hand]} Total: {self.dealer.get_hand_value()}")
                 showing_result("BJ", "BJ")
                 print("Player and Dealer is Blackjack! Push (Tie).")
-                block_end(), block()
                 self.player.money += self.player.current_bet
             else:
-                block()
-                print(f"P Hand: {[str(card) for card in self.player.hand]} Total: {self.player.get_hand_value()}")
-                print(f"D Hand: {[str(card) for card in self.dealer.hand]} Total: {self.dealer.get_hand_value()}")
                 showing_result(player_hand_value, "BJ")
-                print("Dealer win! Player loses!")
+                block()
+                print("\n\tDealer win Blackjack!\n")
+            block_end(), block()
             return
         
         choice_bj = "no"
@@ -321,8 +335,8 @@ class BlackjackGame:
             block()
             choice_bj = "continue"
             block
-            print("You get Blackjack! \nBut dealer's face-up card is Ace")
-            choice_bj = input("Do you want to win 1:1 or win 1:1.5 \nif dealer is not Blackjack? (win/continue): ").lower()
+            print("You get Blackjack! \nBut dealer's face-up card is Ace. Do you")
+            choice_bj = input("want to win 1:1 or continue win 1:1.5 \nif dealer is not Blackjack? (win/continue): ").lower()
             if choice_bj == "win" or choice_bj == "w":
                 self.player.money += self.player.current_bet * 2
                 self.player.current_bet = 0
