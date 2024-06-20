@@ -37,8 +37,12 @@ Upload MV_2 on GitHub in 20 of June, 2024. 2319(NZST, GMT+12)
                           25:1 of same suits and same ranks NOT AVAILABLE
 -- To optimization: If player get same colour of PP, 12:1
 
-=============================================================
-Future:
+Upload PCV_7 on GitHub in 21 of June, 2024. 0000(NZST, GMT+12)
+=========================================================================
+The latest version:  MV_2    PCV_7
+
+=========================================================================
+Future taget:
 1. Make the "Split" function
 2. Accept special side-bet. 21+3 and Match with dealer(MWD)
 3. Make the GUI version
