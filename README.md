@@ -1,3 +1,5 @@
+PCV means Personal Computer Version   |||   MV means Mobile Version
+
 Create PCV_1 in 15 of May, 2024. 
 -- Basic Random number 
 -- Win and lost calculation 
@@ -38,6 +40,7 @@ Upload MV_2 on GitHub in 20 of June, 2024. 2319(NZST, GMT+12)
 -- To optimization: If player get same colour of PP, 12:1
 
 Upload PCV_7 on GitHub in 21 of June, 2024. 0000(NZST, GMT+12)
+
 =========================================================================
 The latest version:  MV_2    PCV_7
 
