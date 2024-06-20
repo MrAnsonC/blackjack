@@ -326,7 +326,7 @@ class BlackjackGame:
         # Check the player is perfect pair or not
         if self.player.hand[0].rank == self.player.hand[1].rank and self.player.current_pp != 0:
             block()
-            print("Congratulation! You get a perfect pair!")
+            print("Congratulation! You get a perfect pair!\nPay 5 to 1. You win:",self.player.current_pp*5)
             self.player.money += self.player.current_pp*5
             
 
