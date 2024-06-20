@@ -42,11 +42,15 @@ Upload MV_2 on GitHub in 20 of June, 2024. 2319(NZST, GMT+12)
 
 Upload PCV_7 on GitHub in 21 of June, 2024. 0000(NZST, GMT+12)
 
-=========================================================================
-The latest version:  MV_2    PCV_7
+Upload MV_2.1 on GitHub in 21 of June, 2024. 0925(NZST, GMT+12)
+-- PCV_7 will be update soon.
+-- Player get same colour of PP, 12:1 available.
 
 =========================================================================
-Future taget:
+The latest version:  MV_2.1    PCV_7
+
+=========================================================================
+Future target:
 1. Make the "Split" function
 2. Accept special side-bet. 21+3 and Match with dealer(MWD)
 3. Make the GUI version
