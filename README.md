@@ -35,3 +35,10 @@ Upload MV_1 on FB Group "Python" in
 Link: https://www.facebook.com/groups/python
 
 Upload MV_1 on Github in 20 of June, 2024. 1925(NZT, GMT+12)
+
+
+=============================================================
+Future:
+1. Make the "Split" function
+2. Make the GUI version
+3. Make it in java and C++
