@@ -1,6 +1,10 @@
 '''
 Make by HSC
 
+This is the PCV_1 version. No any update will be available here.
+If you want to play the latest version, please go to
+https://github.com/MrAnsonC/blackjack/
+
 Create PCV_1 in 15 of May, 2024. 
 -- Basic Random number 
 -- Win and lost calculation 
