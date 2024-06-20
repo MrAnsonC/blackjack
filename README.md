@@ -33,5 +33,6 @@ Reupload MV_1 on GitHub in 20 of June, 2024. 2050(NZT, GMT+12)
 =============================================================
 Future:
 1. Make the "Split" function
-2. Make the GUI version
-3. Make it in java and C++
+2. Accept special side-bet. 21+3 and Perfect Pair(PP)
+3. Make the GUI version
+4. Make it in java and C++
