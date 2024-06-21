@@ -64,6 +64,8 @@ MV_2.2 and PCV_7.2 update
 -- 21+3 side bet add "Three of King"
 =========================================================================
 
+Special mode: SP_War_of_Casino(Core MV_2.2)
+
 Stop support version from:  MV_2.1    PCV_7.1
 
 =========================================================================
@@ -74,5 +76,6 @@ The latest version:  MV_2.2    PCV_7.2
 Future target:
 1. Make the "Split" function
 2. Accept special side-bet. Match with dealer(MWD)
-3. Make the GUI version
-4. Make it in java and C++
+3. Make some special mode......
+4. Make the GUI version
+5. Make it in java and C++
