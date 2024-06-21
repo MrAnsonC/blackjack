@@ -46,7 +46,7 @@ Upload MV_2 on GitHub in 20 of June, 2024. 2317(NZST, GMT+12)
 Upload PCV_7 on GitHub in 21 of June, 2024. 0000(NZST, GMT+12)
 
 Upload MV_2.1 on GitHub in 21 of June, 2024. 0925(NZST, GMT+12)
--- PCV_7.1 will be update soon.
+-- PCV_7,1 will be update soon.
 -- Player get same colour of PP, 12:1 available.
 
 Upload PCV_7.1 on GitHub in 21 of June, 2024. 0937(NZST, GMT+12)
@@ -73,8 +73,7 @@ import random
 # Define card suits and ranks
 suits = ['♥', '♦', '♣', '♠']
 ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
-##suits = ['♥', '♦']
-##ranks = ['J', '9', 'Q']
+##ranks = ['K', 'Q']
 
 # Define card class
 class Card:
@@ -105,15 +104,15 @@ def dealer_display(dealer_first_card):
 
 # Block
 def block():
-    print("==================================================")
+    print("========================================")
 def block_end():
-    print("===============================END==GAME==========")
+    print("=======================END==GAME========")
 
 # Result of card
 def showing_result(player, dealer):
     block()
-    print("  Player's card value   |||    Dealer's card value\n\t",
-          player,"\t\t|||\t    ",dealer)
+    print("\tPlayer   |||   \tDealer\n\t ",
+          player,"\t |||\t ",dealer)
     block()
 
 # Define deck class
@@ -239,7 +238,7 @@ class BlackjackGame:
                 else:
                     if double_surrender_allow == True:
                         dealer_display(dealer_first_card)
-                        action = input("Choose action (Hit, Stand, Double, Surrender): ").lower()
+                        action = input("Choose action (H, S, D, SR): ").lower()
                     else:
                         dealer_display(dealer_first_card)
                         action = input("Choose action (Hit or Stand): ").lower()
@@ -250,7 +249,7 @@ class BlackjackGame:
                 hand_value = self.player.get_hand_value()
 
                 block()
-                print(f"Player's Hit: {[str(card) for card in self.player.hand]} Total: {hand_value}")
+                print(f"P Hit: {[str(card) for card in self.player.hand]} T: {hand_value}")
 
                 if hand_value > 21:
                     return -1  # Player busts
@@ -264,7 +263,7 @@ class BlackjackGame:
                     self.player.current_bet *= 2
                     self.player.add_card(self.deck.deal_card())
                     block()
-                    print(f"Player's Double: {[str(card) for card in self.player.hand]} Total: {self.player.get_hand_value()}")
+                    print(f"P D: {[str(card) for card in self.player.hand]} Total: {self.player.get_hand_value()}")
                     if self.player.get_hand_value() > 21:
                         return -1  # Player bustsbreak
                     else:
@@ -281,46 +280,46 @@ class BlackjackGame:
             else:
                 block()
                 if double_surrender_allow == True:                    
-                    print("Invalid input. Please choose Hit, Stand, Double, or Surrender.")
+                    print("Invalid input. Choose Hit, Stand, Double, or Surrender.")
                 else:
                     if action == "surrender" or action == "sr":          
-                        print("Not allow Surrender. Please choose Hit or Stand.")
+                        print("Not allow Surrender. Choose Hit or Stand")
                     elif action == "double" or action == "d":
-                        print("Not allow Double. Please choose Hit or Stand.")
+                        print("Not allow Double. Choose Hit or Stand")
                     else:
-                        print("Invalid input. Please choose Hit or Stand.")
+                        print("Invalid input. Choose Hit or Stand.")
                 block()
-                print(f"Player's Hand: {[str(card) for card in self.player.hand]} Total: {self.player.get_hand_value()}")
+                print(f"P Hand: {[str(card) for card in self.player.hand]} Total: {self.player.get_hand_value()}")
 
         return 0  # Player stands
 
     def dealer_turn(self):
         block(), block()
-        print(f"Dealer's Hand: {[str(card) for card in self.dealer.hand]} Total: {self.dealer.get_hand_value()}")
+        print(f"D Hand: {[str(card) for card in self.dealer.hand]} Total: {self.dealer.get_hand_value()}")
         while self.dealer.should_hit():
             self.dealer.add_card(self.deck.deal_card())
             block()
-            print(f"Dealer's Hits: {[str(card) for card in self.dealer.hand]} Total: {self.dealer.get_hand_value()}")
+            print(f"D Hits: {[str(card) for card in self.dealer.hand]} Total: {self.dealer.get_hand_value()}")
 
     def settle_bets(self, result):
         player_hand_value = self.player.get_hand_value()
         dealer_hand_value = self.dealer.get_hand_value()
         if result == -1:  # Player busts
             block(), block()
-            print(f"Dealer's Hand: {[str(card) for card in self.dealer.hand]} Total: {self.dealer.get_hand_value()}")
+            print(f"D Hand: {[str(card) for card in self.dealer.hand]} Total: {self.dealer.get_hand_value()}")
             showing_result(player_hand_value, dealer_hand_value)
             print("Player busts! Dealer wins.")
             block(), block()
         elif result == -0.5:  # Player surrenders
             block(), block()
-            print(f"Dealer's Hand: {[str(card) for card in self.dealer.hand]} Total: {self.dealer.get_hand_value()}")
+            print(f"D Hand: {[str(card) for card in self.dealer.hand]} Total: {self.dealer.get_hand_value()}")
             showing_result(player_hand_value, dealer_hand_value)
             print("Player surrenders.")
             block_end(), block()
         elif result == 2:  # Player Blackjack
             block()
             showing_result("BJ", dealer_hand_value)
-            print("\n\t   Player wins Blackjack!\n")
+            print("\n\tPlayer win Blackjack!\n")
             self.player.money += self.player.current_bet * 2.5
             block_end(), block()
         else:
@@ -410,25 +409,23 @@ class BlackjackGame:
                 print("Congratulation! You win 21+3! (Straight)\nPay 10 to 1.")
                 self.player.money += self.player.current_21_p_3 * 10
             
+            
 
         # Check for dealer blackjack immediately after dealing initial cards
         if self.dealer.hand[1].rank == 'A' and self.dealer.hand[0].get_value() == 10:
             block()
-            print("Dealer has Blackjack!")
-            
+            print(f"P Hand: {[str(card) for card in self.player.hand]} Total: {self.player.get_hand_value()}")
+            print(f"D Hand: {[str(card) for card in self.dealer.hand]} Total: {self.dealer.get_hand_value()}")
+
             if self.player.get_hand_value() == 21:
-                print(f"Player's Hand: {[str(card) for card in self.player.hand]} Total: {self.player.get_hand_value()}")
-                print(f"Dealer's Hand: {[str(card) for card in self.dealer.hand]} Total: {self.dealer.get_hand_value()}")
                 showing_result("BJ", "BJ")
-                print("Player and Dealer is Blackjack! Push (Tie).")
-                block_end(), block()
+                print("Player and Dealer are Blackjack! \nIts a Push (Tie).")
                 self.player.money += self.player.current_bet
             else:
-                block()
-                print(f"Player's Hand: {[str(card) for card in self.player.hand]} Total: {self.player.get_hand_value()}")
-                print(f"Dealer's Hand: {[str(card) for card in self.dealer.hand]} Total: {self.dealer.get_hand_value()}")
                 showing_result(player_hand_value, "BJ")
-                print("Dealer win! Player loses!")
+                block()
+                print("\n\tDealer win Blackjack!\n")
+            block_end(), block()
             return
         
         choice_bj = "no"
@@ -439,8 +436,8 @@ class BlackjackGame:
             block()
             choice_bj = "continue"
             block
-            print("You get Blackjack! But dealer's face-up card is Ace")
-            choice_bj = input("Do you want to win 1:1 or win 1:1.5 \nif dealer is not Blackjack? (win/continue): ").lower()
+            print("You get Blackjack! \nBut dealer's face-up card is Ace. Do you")
+            choice_bj = input("want to win 1:1 or continue win 1:1.5 \nif dealer is not Blackjack? (win/continue): ").lower()
             if choice_bj == "win" or choice_bj == "w":
                 self.player.money += self.player.current_bet * 2
                 self.player.current_bet = 0
@@ -455,8 +452,8 @@ class BlackjackGame:
         if self.dealer.hand[0].rank == 'A' and choice_bj == "no" :
             block()
             block()
-            print("Dealer's face-up card is Ace. Insurance option available.")
-            choice = input("Do you want to buy insurance? (yes/no): ").lower()
+            print("Dealer's face-up card is Ace.\nInsurance option available.")
+            choice = input("Do you want to buy insurance? (y/n): ").lower()
             if choice == "yes" or choice == "y":
                 insurance_amount = self.player.current_bet * (1/2)
                 if self.player.money >= insurance_amount:
@@ -464,21 +461,21 @@ class BlackjackGame:
                     self.player.insurance_bet = insurance_amount
 
         if self.dealer.hand[0].rank == 'A' and self.dealer.hand[1].get_value() == 10:
-            print(f"Player's Hand: {[str(card) for card in self.player.hand]} Total: {self.player.get_hand_value()}")
-            print(f"Dealer's Hand: {[str(card) for card in self.dealer.hand]} Total: {self.dealer.get_hand_value()}")
+            print(f"P Hand: {[str(card) for card in self.player.hand]} Total: {self.player.get_hand_value()}")
+            print(f"D Hand: {[str(card) for card in self.dealer.hand]} Total: {self.dealer.get_hand_value()}")
             block()
             block()
             if self.player.insurance_bet > 0:
-                print("\n\t   Dealer has Blackjack!")
+                print("\n\tDealer win Blackjack!\n")
                 showing_result(player_hand_value, "BJ")
                 print("Insurance pays 2:1.")
                 self.player.money += self.player.insurance_bet * 2
             elif choice_bj == "nope":
                 showing_result("BJ", "BJ")
-                print("Dealer has Blackjack. Its a Push (Tie).")
+                print("\nPlayer & Dealer have Blackjack!\n")
                 self.player.money += self.player.current_bet
             else:
-                print("Dealer has Blackjack!")
+                print("\n\tDealer win Blackjack!\n")
                 showing_result(player_hand_value, "BJ")
                 print("Player loses.")
             block_end(), block()
