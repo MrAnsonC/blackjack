@@ -67,7 +67,7 @@ MV_2.2 and PCV_7.2 update
 -- 21+3 side bet add "Three of King"
 =========================================================================
 This is a special mode of Blackjack. (Remember, update will be available
-only in GitHub: )
+only in GitHub: https://github.com/MrAnsonC/blackjack/tree/main/Special%20mode)
 
 -- Core MV_2.2, War of Casino.
 --  If player bet "War of Casino", if player first card is
