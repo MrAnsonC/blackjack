@@ -66,6 +66,6 @@ The latest version:  MV_2.1    PCV_7.2
 =========================================================================
 Future target:
 1. Make the "Split" function
-2. Accept special side-bet. 21+3 and Match with dealer(MWD)
+2. Accept special side-bet. Match with dealer(MWD)
 3. Make the GUI version
 4. Make it in java and C++
