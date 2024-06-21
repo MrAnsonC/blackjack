@@ -57,11 +57,11 @@ Upload PCV_7.2 on GitHub in 21 of June, 2024. 1450(NZST, GMT+12)
 
 =========================================================================
 
-Stop support version from:  MV_2    PCV_7.1
+Stop support version from:  MV_2.1    PCV_7.1
 
 =========================================================================
 
-The latest version:  MV_2.1    PCV_7.2
+The latest version:  MV_2.2    PCV_7.2
 
 =========================================================================
 Future target:
