@@ -70,7 +70,7 @@ This is a special mode of Blackjack. (Remember, update will be available
 only in GitHub: https://github.com/MrAnsonC/blackjack/tree/main/Special%20mode)
 
 -- Core MV_2.2, War of Casino.
---  If player bet "War of Casino", if player first card is
+--  If player bet "War of Casino", and player first card is
     bigger than dealer, than bet ammount back to player.
     And the winning money will be bet in normal BJ bet.
 
