@@ -62,6 +62,9 @@ Update MV_2.2 on GitHub in 21 of June, 2024. 1510(NZST, GMT+12)
 -- Function as same as MV_2.2
 -- Fix the UI problem
 -- Fix the bug of side-bet reset problem
+
+MV_2.2 and PCV_7.2 update
+-- 21+3 side bet add "Three of King"
 =========================================================================
 Stop support version from:  MV_2.1    PCV_7.1
 =========================================================================
@@ -398,17 +401,21 @@ class BlackjackGame:
 
             if straight and suit:
                 block()
-                print("Congratulation! You win 21+3! (Straight flush)\nPay 40 to 1.")
+                print("Congratulation! You win 21+3! (Straight flush)\nPay 40 to 1. You win: ",self.player.current_21_p_3*40)
                 self.player.money += self.player.current_21_p_3 * 40
             elif suit:
                 block()
-                print("Congratulation! You win 21+3! (Flush)\nPay 5 to 1.")
+                print("Congratulation! You win 21+3! (Flush)\nPay 5 to 1. You win: ",self.player.current_21_p_3*5)
                 self.player.money += self.player.current_21_p_3 * 5
             elif straight:
                 block()
-                print("Congratulation! You win 21+3! (Straight)\nPay 10 to 1.")
+                print("Congratulation! You win 21+3! (Straight)\nPay 10 to 1. You win: ",self.player.current_21_p_3*10)
                 self.player.money += self.player.current_21_p_3 * 10
-            
+
+            if self.player.hand[0].rank == self.player.hand[1].rank == self.dealer.hand[0].rank:
+                block()
+                print("Congratulation! You win 21+3! (Three of a kind)\nPay 30 to 1. You win: ",self.player.current_21_p_3*30)
+                self.player.money += self.player.current_21_p_3 * 30
             
 
         # Check for dealer blackjack immediately after dealing initial cards

@@ -55,6 +55,13 @@ Upload PCV_7.2 on GitHub in 21 of June, 2024. 1450(NZST, GMT+12)
                              Perfect Pair and/or 21+3
 -- MV_2.2 will be update soon.
 
+Update MV_2.2 on GitHub in 21 of June, 2024. 1510(NZST, GMT+12)
+-- Function as same as MV_2.2
+-- Fix the UI problem
+-- Fix the bug of side-bet reset problem
+
+MV_2.2 and PCV_7.2 update
+-- 21+3 side bet add "Three of King"
 =========================================================================
 
 Stop support version from:  MV_2.1    PCV_7.1

@@ -62,6 +62,9 @@ Update MV_2.2 on GitHub in 21 of June, 2024. 1510(NZST, GMT+12)
 -- Function as same as MV_2.2
 -- Fix the UI problem
 -- Fix the bug of side-bet reset problem
+
+MV_2.2 and PCV_7.2 update
+-- 21+3 side bet add "Three of King"
 =========================================================================
 Stop support version from:  MV_2.1    PCV_7.1
 =========================================================================
@@ -73,8 +76,8 @@ import random
 # Define card suits and ranks
 suits = ['♥', '♦', '♣', '♠']
 ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
-##suits = ['♥', '♦']
-##ranks = ['J', '9', 'Q']
+##suits = ['♥', '♦', '♠']
+##ranks = ['J', '9']
 
 # Define card class
 class Card:
@@ -360,10 +363,10 @@ class BlackjackGame:
             if self.player.hand[0].rank == self.player.hand[1].rank:
                 block()
                 if self.player.hand[0].suit == "♥" and self.player.hand[1].suit == "♦" or self.player.hand[0].suit == "♦" and self.player.hand[1].suit == "♥" or self.player.hand[0].suit == '♠' and self.player.hand[1].suit == '♣' or self.player.hand[0].suit == '♣' and self.player.hand[1].suit == '♠':
-                    print("Congratulation! You get a Perfect Pair!\nPay 12 to 1. You win:",self.player.current_pp*12)
+                    print("Congratulation! You get a Perfect Pair!\nPay 12 to 1. You win: ",self.player.current_pp*12)
                     self.player.money += self.player.current_pp*25
                 else:
-                    print("Congratulation! You get a Pair!\nPay 5 to 1. You win:",self.player.current_pp*5)
+                    print("Congratulation! You get a Pair!\nPay 5 to 1. You win: ",self.player.current_pp*5)
                     self.player.money += self.player.current_pp*5
 
         ## Side-bet  21+3
@@ -399,16 +402,21 @@ class BlackjackGame:
 
             if straight and suit:
                 block()
-                print("Congratulation! You win 21+3! (Straight flush)\nPay 40 to 1.")
+                print("Congratulation! You win 21+3! (Straight flush)\nPay 40 to 1. You win: ",self.player.current_21_p_3*40)
                 self.player.money += self.player.current_21_p_3 * 40
             elif suit:
                 block()
-                print("Congratulation! You win 21+3! (Flush)\nPay 5 to 1.")
+                print("Congratulation! You win 21+3! (Flush)\nPay 5 to 1. You win: ",self.player.current_21_p_3*5)
                 self.player.money += self.player.current_21_p_3 * 5
             elif straight:
                 block()
-                print("Congratulation! You win 21+3! (Straight)\nPay 10 to 1.")
+                print("Congratulation! You win 21+3! (Straight)\nPay 10 to 1. You win: ",self.player.current_21_p_3*10)
                 self.player.money += self.player.current_21_p_3 * 10
+
+            if self.player.hand[0].rank == self.player.hand[1].rank == self.dealer.hand[0].rank:
+                block()
+                print("Congratulation! You win 21+3! (Three of a kind)\nPay 30 to 1. You win: ",self.player.current_21_p_3*30)
+                self.player.money += self.player.current_21_p_3 * 30
             
 
         # Check for dealer blackjack immediately after dealing initial cards
