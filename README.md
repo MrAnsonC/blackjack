@@ -49,13 +49,19 @@ Upload MV_2.1 on GitHub in 21 of June, 2024. 0925(NZST, GMT+12)
 Upload PCV_7.1 on GitHub in 21 of June, 2024. 0937(NZST, GMT+12)
 -- Function as same as MV_2.1
 
+Upload PCV_7.2 on GitHub in 21 of June, 2024. 1450(NZST, GMT+12)
+-- Make the side bet of 21+3
+-- Allow player to choose Side bet type: No side bet,
+                             Perfect Pair and/or 21+3
+-- MV_2.2 will be update soon.
+
 =========================================================================
 
-Stop support version: MV_1    MV_2    PCV_7
+Stop support version from:  MV_2    PCV_7.1
 
 =========================================================================
 
-The latest version:  MV_2.1    PCV_7.1
+The latest version:  MV_2.1    PCV_7.2
 
 =========================================================================
 Future target:
