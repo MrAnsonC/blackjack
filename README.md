@@ -62,9 +62,11 @@ Update MV_2.2 on GitHub in 21 of June, 2024. 1510(NZST, GMT+12)
 
 MV_2.2 and PCV_7.2 update
 -- 21+3 side bet add "Three of King"
+-- UI update
 =========================================================================
 
 Special mode: SP_War_of_Casino(Core MV_2.2)
+Special mode: SP_Blazing_7s(Core MV_2.2)
 
 Stop support version from:  MV_2.1    PCV_7.1
 
