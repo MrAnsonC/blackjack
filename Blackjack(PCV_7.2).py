@@ -115,8 +115,8 @@ def block_end():
 # Result of card
 def showing_result(player, dealer):
     block()
-    print("  Player's card value   |||    Dealer's card value\n\t",
-          player,"\t\t|||\t    ",dealer)
+    print("|> Player's card value  <|> Dealer's card value <|\n|>\t   ",
+          player,"\t\t<|>\t    ",dealer,"\t<|")
     block()
 
 # Define deck class

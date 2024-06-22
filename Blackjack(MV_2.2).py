@@ -65,6 +65,7 @@ Update MV_2.2 on GitHub in 21 of June, 2024. 1510(NZST, GMT+12)
 
 MV_2.2 and PCV_7.2 update
 -- 21+3 side bet add "Three of King"
+-- UI update
 =========================================================================
 Stop support version from:  MV_2.1    PCV_7.1
 =========================================================================
@@ -114,8 +115,8 @@ def block_end():
 # Result of card
 def showing_result(player, dealer):
     block()
-    print("\tPlayer   |||   \tDealer\n\t ",
-          player,"\t |||\t ",dealer)
+    print("||>\tPlayer    <|> \t  Dealer     <||\n||>\t ",
+          player,"\t  <|> \t   ",dealer,"\t     <||")
     block()
 
 # Define deck class
