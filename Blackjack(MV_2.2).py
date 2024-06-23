@@ -512,10 +512,17 @@ if __name__ == "__main__":
             print("Welcome to BJ.\n")
             print("There have 4 choices of Side Bet:")
             print("1. No Side-Bet    3. Perfect Pair  \n2. 21+3   \t  4. 21+3 & PP")
-            side_bet_choice = input("Enter the number you choose:  ")
-            if side_bet_choice not in ["2", "3", "4"]:
-                side_bet_choice = "1"
-            block(),block(),block(),block(),block()
+
+            while True:
+                side_bet_choice = input("Enter the number you choose:  ")
+                if side_bet_choice not in map(str, range(1, 5)):
+                    block()
+                    print("Please enter valid choice!")
+                    block()
+                else:
+                    break
+                    
+            print("\n"*20)
             
         print(f"Player's Money: {int(game.player.money)}")
         
@@ -523,11 +530,22 @@ if __name__ == "__main__":
             try:
                 bet_amount = int(input("Place your bet amount (0 to quit): "))
                 if bet_amount < 0:
+                    block()
                     print("Please enter a positive number.")
+                    block()
                 else:
                     break  # Valid input, break out of the loop
             except ValueError:
+                block()
                 print("Invalid input. Enter a valid number.")
+                block()
+
+        if bet_amount == 0:
+            block()
+            block()
+            print("Thanks for playing!")
+            input("=======================MAKE=BY=HSC=====")
+            break
                 
         ## Side bet 
         if side_bet_choice == "3" or side_bet_choice == "4":
@@ -543,11 +561,15 @@ if __name__ == "__main__":
                         pp_amount = int(i_pp_amount)
                         
                     if pp_amount < 0:
+                        block()
                         print("Please enter a positive number.")
+                        block()
                     else:
                         break  # Valid input, break out of the loop
                 except ValueError:
+                    block()
                     print("Invalid input. Enter a valid number.")
+                    block()
 
         if side_bet_choice == "2" or side_bet_choice == "4":
             while True:
@@ -563,11 +585,15 @@ if __name__ == "__main__":
                         Twenty4_amount = int(i_24_amount)
                         
                     if Twenty4_amount < 0:
+                        block()
                         print("Please enter a positive number.")
+                        block()
                     else:
                         break  # Valid input, break out of the loop
                 except ValueError:
+                    block()
                     print("Invalid input. Enter a valid number.")
+                    block()
                     
         if side_bet_choice == "1":
             pp_amount = 0
@@ -578,13 +604,9 @@ if __name__ == "__main__":
 
         if side_bet_choice == "3":
             Twenty4_amount = 0
-
-        if bet_amount == 0:
-            print("Thanks for playing!")
-            break
             
         if game.player.place_bet(bet_amount, pp_amount, Twenty4_amount):
             game.play_round()
         else:
+            block()
             print("Invalid bet amount. Please try again.")
-
