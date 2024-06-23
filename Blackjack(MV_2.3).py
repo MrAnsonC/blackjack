@@ -444,7 +444,7 @@ class BlackjackGame:
                 block()
                 if self.player.hand[0].rank == "Q" and self.player.hand[1].rank == "K" or self.player.hand[1].rank == "Q" and self.player.hand[0].rank == "K":
                     winning_royal = self.player.current_royal*25
-                    print("||\t\t\t\t      ||\n||    You have same suit of Q & K!    ||")
+                    print("||\t\t\t\t      ||\n||   You have same flush of Q & K!    ||")
                     if winning_royal >= 1000000000:
                         winning_royal = winning_royal/1000000000
                         block()
@@ -460,7 +460,7 @@ class BlackjackGame:
                         print("||\tPay 25 to 1. Win:",winning_royal,"\t      ||\n||\t\t\t\t      ||")
                     self.player.money += self.player.current_royal * 25
                 else:
-                    print("Congratulation! You win Royal Match! \n(Same suit)Pay 5 to 2. You win:",self.player.current_royal*2.5)
+                    print("Congratulation! You win Royal Match! \n(Flush)Pay 5 to 2. You win:",self.player.current_royal*2.5)
                     self.player.money += self.player.current_royal * 2.5
             
 
