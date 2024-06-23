@@ -67,7 +67,7 @@ MV_2.2 and PCV_7.2 update
 -- 21+3 side bet add "Three of King"
 -- UI update
 =========================================================================
-Stop support version from:  MV_2.1    PCV_7.1
+Stop support version from:  MV_2.1    PCV_7.2
 =========================================================================
 The latest version:  MV_2.2    PCV_7.2
 '''
