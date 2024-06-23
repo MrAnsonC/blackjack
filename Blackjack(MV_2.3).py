@@ -615,7 +615,7 @@ if __name__ == "__main__":
                         block()
                     else:
                         break  # Valid input, break out of the loop
-                except ValueError:
+                except ValueError: 
                     block()
                     print("Invalid input. Enter a valid number.")
                     block()
