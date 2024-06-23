@@ -72,7 +72,7 @@ MV_2.3
 -- Royal Match side bet
 -- Confirm PCV_7.2 is the last system update
 =========================================================================
-Stop support version from:  MV_2.2    PCV_7.2
+Stop support version from:  MV_2.2    PCV_7.2(Last update)
 =========================================================================
 The latest version:  MV_2.3    PCV_7.2
 '''
