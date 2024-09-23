@@ -367,7 +367,7 @@ class BlackjackGame:
                 showing_result(player_hand_value, dealer_hand_value)
                 print("Push (Tie).")
                 self.player.money += self.player.current_bet
-        if dealer_hand_value > 21:
+        if dealer_hand_value > 21 & self.player.current_bust_amount != 0:
             multiplier = {
                 3: 2,
                 4: 3,
