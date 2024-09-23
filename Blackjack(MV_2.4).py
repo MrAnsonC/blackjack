@@ -541,7 +541,6 @@ class BlackjackGame:
             else:
                 dealer_hand_values = self.dealer.hand[0].rank
             three_cards_total = player_hand_value + int(dealer_hand_values)
-            print(three_cards_total)
             if three_cards_total > 18 and three_cards_total < 22:
                 block()
                 if three_cards_total == 19:
