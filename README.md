@@ -68,16 +68,18 @@ MV_2.3
 -- Change the Side-Bet entering answer
 -- Royal Match side bet
 -- Confirm PCV_7.2 is the last system update
+
+MV_2.4
+-- Dealer Bust side bet
 =========================================================================
 
 Special mode: SP_War_of_Casino(Core MV_2.2)
 Special mode: SP_Blazing_7s(Core MV_2.2)
 
-Stop support version from:  MV_2.1    PCV_7.2
+Stop support version from:  MV_2.3    PCV_7.2
 
 =========================================================================
-
-The latest version:  MV_2.2    PCV_7.2
+The latest version:  MV_2.4    PCV_7.2
 
 =========================================================================
 Future target:
