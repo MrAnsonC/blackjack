@@ -72,7 +72,7 @@ MV_2.3
 -- Royal Match side bet
 -- Confirm PCV_7.2 is the last system update
 
-MV_2.4
+MV_2.4 on GitHub in 23 of September, 2024. 2320(NZST, GMT+12)
 -- Dealer Bust side bet
 =========================================================================
 Stop support version from:  MV_2.3    PCV_7.2(Last update)
