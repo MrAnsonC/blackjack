@@ -367,35 +367,44 @@ class BlackjackGame:
                 showing_result(player_hand_value, dealer_hand_value)
                 print("Push (Tie).")
                 self.player.money += self.player.current_bet
-        if dealer_hand_value > 21 | self.player.current_bust_amount != 0:
-            multiplier = {
-                3: 2,
-                4: 3,
-                5: 11,
-                6: 51,
-                7: 101
-            }
 
-            self.player.money += self.player.current_bust_amount * multiplier.get(dealer_card_count, 251)
-            block()
-            print("Congratulations! Dealer Bust!!")
-            print(f"Pay {multiplier.get(dealer_card_count, 251) - 1} : 1. You win: {self.player.current_bust_amount * multiplier.get(dealer_card_count, 251)}")
+        if dealer_hand_value > 21:
+            if self.player.current_bust_amount != 0:
+                multiplier = {
+                    3: 1,
+                    4: 2,
+                    5: 10,
+                    6: 50,
+                    7: 100
+                }
 
-            '''
-            if too_many_amount != 0:
-                if dealer_card_count == 3:
-                    self.player.current_bust_amount *= 2
-                elif dealer_card_count == 4:
-                    self.player.money += self.player.current_bust_amount * 3
-                elif dealer_card_count == 5:
-                    self.player.money += self.player.current_bust_amount * 10
-                elif dealer_card_count == 6:
-                    self.player.money += self.player.current_bust_amount * 51
-                elif dealer_card_count == 7:
-                    self.player.money += self.player.current_bust_amount * 101
-                else:
-                    self.player.money += self.player.current_bust_amount * 251
-            '''
+                # Calculate winnings
+                win_multiplier = multiplier.get(dealer_card_count, 250)
+                winnings = self.player.current_bust_amount * (win_multiplier + 1)
+
+                # Update player's money
+                self.player.money += self.player.current_bust_amount * (win_multiplier + 1)
+
+                # Block and print messages
+                block()
+                print("Congratulations! Dealer Bust!!")
+                print(f"Pay {win_multiplier} : 1. You win: {winnings}")
+
+                '''
+                if too_many_amount != 0:
+                    if dealer_card_count == 3:
+                        self.player.current_bust_amount *= 2
+                    elif dealer_card_count == 4:
+                        self.player.money += self.player.current_bust_amount * 3
+                    elif dealer_card_count == 5:
+                        self.player.money += self.player.current_bust_amount * 10
+                    elif dealer_card_count == 6:
+                        self.player.money += self.player.current_bust_amount * 51
+                    elif dealer_card_count == 7:
+                        self.player.money += self.player.current_bust_amount * 101
+                    else:
+                        self.player.money += self.player.current_bust_amount * 251
+                '''
 
         # Clear current bet after settling
         self.player.current_bet = 0
