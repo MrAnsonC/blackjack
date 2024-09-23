@@ -378,8 +378,8 @@ class BlackjackGame:
 
             self.player.money += self.player.current_bust_amount * multiplier.get(dealer_card_count, 251)
             block()
-            print("Side bet Winner - Dealer Bust!!")
-            print(f"Congrats! You win {self.player.current_bust_amount * multiplier.get(dealer_card_count, 251)} which is 1 : {multiplier.get(dealer_card_count, 251)-1}")
+            print("Congratulations! Dealer Bust!!")
+            print(f"Pay {multiplier.get(dealer_card_count, 251) - 1} : 1. You win: {self.player.current_bust_amount * multiplier.get(dealer_card_count, 251)}")
 
             '''
             if too_many_amount != 0:
