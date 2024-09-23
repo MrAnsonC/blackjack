@@ -74,31 +74,43 @@ MV_2.3
 
 MV_2.4 on GitHub in 23 of September, 2024. 2320(NZST, GMT+12)
 -- Dealer Bust side bet
+-- Fire 21
 =========================================================================
-
-                Side bet odds:
-Perfect Pair:
-Getting same colour Pair:           1 : 12
-Pair:                               1 : 5
-
-21+3:
-Player and Dealer Straight Flush:   1 : 40
-Three of a kind:                    1 : 30
-Player and Dealer Straight:         1 : 10
-Player and Dealer Flush:            1 : 5
-
-Royal Match:
-Player suit and get "Q"&"K":        1 : 25
-Player Flush:                       2 : 5
-
-Dealer Bust:
-Dealer get 3 cards and bust:        1 : 1
-Dealer get 4 cards and bust:        1 : 2
-Dealer get 5 cards and bust:        1 : 10
-Dealer get 6 cards and bust:        1 : 50
-Dealer get 7 cards and bust:        1 : 100
-Dealer get 8+ cards and bust:       1 : 250
-
+    Type of Side bet                |     Odds
+==================================================
+Perfect Pair:                       |
+--------------------------------------------------
+Pair:                               |    1 : 5
+Getting same colour Pair:           |    1 : 12
+==================================================
+21+3:                               |
+--------------------------------------------------
+Player and Dealer Flush:            |    1 : 5
+Player and Dealer Straight:         |    1 : 10
+Player and Dealer Same Ranks:       |    1 : 30
+Player and Dealer Straight Flush:   |    1 : 40
+==================================================
+Royal Match:                        |
+--------------------------------------------------
+Player Flush:                       |    2 : 5
+Player suit and get "Q"&"K":        |    1 : 25
+==================================================
+Dealer Bust:                        |
+--------------------------------------------------
+Dealer get 3 cards and bust:        |    1 : 1
+Dealer get 4 cards and bust:        |    1 : 2
+Dealer get 5 cards and bust:        |    1 : 10
+Dealer get 6 cards and bust:        |    1 : 50
+Dealer get 7 cards and bust:        |    1 : 100
+Dealer get 8+ cards and bust:       |    1 : 250
+==================================================
+Fire 21:  (Original 3 cards)        |
+--------------------------------------------------
+First 3 cards = 19:                 |    1 : 1
+First 3 cards = 20:                 |    1 : 2
+First 3 cards = 21:                 |    1 : 4
+  |-> With same flush:              |    1 : 20
+  --> 3 Cards are 7:                |    1 : 100
 =========================================================================
 Stop support version from:  MV_2.3    PCV_7.2(Last update)
 =========================================================================
@@ -156,7 +168,7 @@ def showing_result(player, dealer):
 # Extract the unique digits
 def extract_unique_digits(numbers):
     unique_digits = set()
-    approve_digits = {'0' ,'1', '2', '3', '4'}
+    approve_digits = {'0' ,'1', '2', '3', '4', '5'}
     
     for char in numbers:
         if char in approve_digits:
@@ -194,15 +206,17 @@ class Player:
         self.insurance_bet = 0
         self.current_royal = 0
         self.current_bust_amount = 0
+        self.current_fire_3 = 0
 
-    def place_bet(self, amount, pp_amount, twenty_four_amount, royal_match_amount, too_many_amount):
+    def place_bet(self, amount, pp_amount, twenty_four_amount, royal_match_amount, too_many_amount, fire_3_amount):
         self.current_bet = 0
         self.current_pp = 0
         self.current_21_p_3 = 0
         self.current_royal = 0
         self.current_bust_amount = 0
+        self.current_fire_3 = 0
         T_bet = 0
-        T_bet = amount + pp_amount + twenty_four_amount + royal_match_amount + too_many_amount
+        T_bet = amount + pp_amount + twenty_four_amount + royal_match_amount + too_many_amount + fire_3_amount
         if T_bet > self.money:
             print("Insufficient funds!")
             return False
@@ -211,11 +225,13 @@ class Player:
         self.current_21_p_3 += twenty_four_amount
         self.current_royal += royal_match_amount
         self.current_bust_amount += too_many_amount
+        self.current_fire_3 += fire_3_amount
         self.money -= amount
         self.money -= pp_amount
         self.money -= twenty_four_amount
         self.money -= royal_match_amount
         self.money -= too_many_amount
+        self.money -= fire_3_amount
         return True
 
     def clear_hand(self):
@@ -413,23 +429,7 @@ class BlackjackGame:
                 # Block and print messages
                 block()
                 print("Congratulations! Dealer Bust!!")
-                print(f"Pay {win_multiplier} : 1. You win: {winnings}")
-
-                '''
-                if too_many_amount != 0:
-                    if dealer_card_count == 3:
-                        self.player.current_bust_amount *= 2
-                    elif dealer_card_count == 4:
-                        self.player.money += self.player.current_bust_amount * 3
-                    elif dealer_card_count == 5:
-                        self.player.money += self.player.current_bust_amount * 10
-                    elif dealer_card_count == 6:
-                        self.player.money += self.player.current_bust_amount * 51
-                    elif dealer_card_count == 7:
-                        self.player.money += self.player.current_bust_amount * 101
-                    else:
-                        self.player.money += self.player.current_bust_amount * 251
-                '''
+                print(f"Pay 1 : {win_multiplier}. You win: {winnings}")
 
         # Clear current bet after settling
         self.player.current_bet = 0
@@ -527,6 +527,40 @@ class BlackjackGame:
                 else:
                     print("Congratulation! You win Royal Match! \n(Flush)Pay 5 to 2. You win:",self.player.current_royal*2.5)
                     self.player.money += self.player.current_royal * 2.5
+
+        ##Side bet  Fire 3
+        if self.player.current_fire_3 != 0:
+            if self.dealer.hand[0].rank == "J" or self.dealer.hand[0].rank == "Q" or self.dealer.hand[0].rank == "K":
+                dealer_hand_values = 10
+            elif self.dealer.hand[0].rank == "A":
+                test_1_or_11 = player_hand_value + 1
+                if test_1_or_11 > 18 and test_1_or_11 < 22:
+                    dealer_hand_values = 1
+                else:
+                    dealer_hand_values = 11
+            else:
+                dealer_hand_values = self.dealer.hand[0].rank
+            three_cards_total = player_hand_value + int(dealer_hand_values)
+            print(three_cards_total)
+            if three_cards_total > 18 and three_cards_total < 22:
+                block()
+                if three_cards_total == 19:
+                    print("Congratulation! You win Fire 3! (19)\nPay 1 : 1. You win: ",self.player.current_fire_3*2)
+                    self.player.money += self.player.current_fire_3*2
+                elif three_cards_total == 20:
+                    print("Congratulation! You win Fire 3! (20)\nPay 1 : 2. You win: ",self.player.current_fire_3*3)
+                    self.player.money += self.player.current_fire_3*3
+                else:
+                    if self.player.hand[0].suit == self.player.hand[1].suit == self.dealer.hand[0].suit:
+                        print("Congratulation! You win Fire 3! (21)\nPay 1 : 20. You win: ",self.player.current_fire_3*20)
+                        self.player.money += self.player.current_fire_3*21
+                    elif self.player.hand[0].rank == 7 and self.player.hand[1].rank == 7 and self.dealer.hand[0].rank == 7:
+                        print("Congratulation! You win Fire 3! (21)\nPay 1 : 100. You win: ",self.player.current_fire_3*100)
+                        self.player.money += self.player.current_fire_3*101
+                    else:
+                        print("Congratulation! You win Fire 3! (21)\nPay 1 : 4. You win: ",self.player.current_fire_3*4)
+                        self.player.money += self.player.current_fire_3*4
+            
             
 
         # Check for dealer blackjack immediately after dealing initial cards
@@ -621,8 +655,8 @@ if __name__ == "__main__":
             side_bet_choice = 0
             print("Welcome to BlackJack.\n")
             print("There have 3 choices of Side Bet:")
-            print("1)Perfect Pair  2)21+3  \n")
-            print("3)Royal Match   4)Dealer Bust\n")
+            print("1)Perfect Pair  2)21+3  3)Royal Match\n")
+            print("4)Dealer Bust   5)Fire 3\n")
             print("No side bet if not enter anything\n")
             
             while True:
@@ -634,7 +668,7 @@ if __name__ == "__main__":
                     break
                 else:
                     block()
-                    print("You must enter valid number: {1, 2, 3, 4}")
+                    print("You must enter 1, 2, 3, 4, 5")
                     block()
                     
             print("\n"*20)
@@ -747,7 +781,7 @@ if __name__ == "__main__":
                     too_many_amount = 0
                     i_too_many_amount = input("Place your Dealer Bust bet: ")
                     
-                    ## If user enters nothing, royal_match_amount = 0
+                    ## If user enters nothing, too_many_amount = 0
                     if i_too_many_amount == "":
                         i_too_many_amount = 0
                     else:
@@ -765,9 +799,35 @@ if __name__ == "__main__":
                     block()
         else:
             too_many_amount = 0
+
+        if 5 in result:
+            while True:
+                try:
+                    i_fire_3_amount = 0
+                    fire_3_amount = 0
+                    i_fire_3_amount = input("Place your Fire 3 bet: ")
+                    
+                    ## If user enters nothing, fire_3_amount = 0
+                    if i_fire_3_amount == "":
+                        i_fire_3_amount = 0
+                    else:
+                        fire_3_amount = int(i_fire_3_amount)
+                        
+                    if fire_3_amount < 0:
+                        block()
+                        print("Please enter a positive number.")
+                        block()
+                    else:
+                        break  # Valid input, break out of the loop
+                except ValueError:
+                    block()
+                    print("Invalid input. Enter a valid number.")
+                    block()
+        else:
+            fire_3_amount = 0
             
             
-        if game.player.place_bet(bet_amount, pp_amount, Twenty4_amount, royal_match_amount, too_many_amount):
+        if game.player.place_bet(bet_amount, pp_amount, Twenty4_amount, royal_match_amount, too_many_amount, fire_3_amount):
             game.play_round()
         else:
             block()
