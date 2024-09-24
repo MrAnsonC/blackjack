@@ -199,7 +199,9 @@ class Deck:
         random.shuffle(self.cards)
 
     def deal_card(self):
-        if len(self.cards) <  random.randint(45, 60):
+        if len(self.cards) <  45:
+            print("Card have been reset!")
+            self.generate_deck()
             self.shuffle()
         return self.cards.pop()
 
@@ -294,12 +296,6 @@ class BlackjackGame:
         self.deck = Deck()
         self.player = Player("Player", initial_money=500)
         self.dealer = Dealer()
-        self.remove_random_card()
-
-    def remove_random_card(self):
-        if self.deck.cards:
-            removed_card = random.choice(self.deck.cards)
-            self.deck.cards.remove(removed_card)
 
     def reset_game(self):
         self.player.clear_hand()
