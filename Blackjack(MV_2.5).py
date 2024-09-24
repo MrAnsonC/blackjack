@@ -78,48 +78,51 @@ MV_2.4 on GitHub in 23 of September, 2024. 2320(NZST, GMT+12)
 
 MV_2.5 on GitHub in 24 of September, 2024. 2329(NZST, GMT+12)
 -- 4 Decks in games
--- Add the side bet odds(Will Fix)
+-- Add the side bet odds
 
 =========================================================================
     Type of Side bet                |     Odds
 ==================================================
 Perfect Pair:                       |
 --------------------------------------------------
-Pair:                               |    1 : 5
-Getting same colour Pair:           |    1 : 12
+Mixed Pair                          |    1 : 4
+Colour Pair                         |    1 : 6
+Perfect Pair                        |    1 : 10
+Perfect Aces                        |    1 : 50 
 ==================================================
 21+3:                               |
 --------------------------------------------------
-Player and Dealer Flush:            |    1 : 5
-Player and Dealer Straight:         |    1 : 10
-Player and Dealer Same Ranks:       |    1 : 30
-Player and Dealer Straight Flush:   |    1 : 40
+Flush                               |    1 : 5
+Straight                            |    1 : 10
+Three of a King (Same Ranks)        |    1 : 30
+Straight Flush                      |    1 : 40
+Suired Three of a King (Same Suits) |    1 : 100
 ==================================================
 Royal Match:                        |
 --------------------------------------------------
-Player Flush:                       |    2 : 5
-Player suit and get "Q"&"K":        |    1 : 25
+Player Flush                        |    2 : 5
+Player suit and get "Q"&"K"         |    1 : 25
 ==================================================
 Dealer Bust:                        |
 --------------------------------------------------
-Dealer get 3 cards and bust:        |    1 : 1
-Dealer get 4 cards and bust:        |    1 : 2
-Dealer get 5 cards and bust:        |    1 : 10
-Dealer get 6 cards and bust:        |    1 : 50
-Dealer get 7 cards and bust:        |    1 : 100
-Dealer get 8+ cards and bust:       |    1 : 250
+Dealer get 3 cards and bust         |    1 : 1
+Dealer get 4 cards and bust         |    1 : 2
+Dealer get 5 cards and bust         |    1 : 10
+Dealer get 6 cards and bust         |    1 : 50
+Dealer get 7 cards and bust         |    1 : 100
+Dealer get 8+ cards and bust        |    1 : 250
 ==================================================
 Fire 21:  (Original 3 cards)        |
 --------------------------------------------------
-First 3 cards = 19:                 |    1 : 1
-First 3 cards = 20:                 |    1 : 2
-First 3 cards = 21:                 |    1 : 4
-  |-> With same flush:              |    1 : 20
-  --> 3 Cards are 7:                |    1 : 100
+First 3 cards = 19                  |    1 : 1
+First 3 cards = 20                  |    1 : 2
+First 3 cards = 21                  |    1 : 4
+  |-> With same flush               |    1 : 20
+  --> 3 Cards are 7                 |    1 : 100
 =========================================================================
-Stop support version from:  MV_2.3    PCV_7.2(Last update)
+Stop support version from:  MV_2.4    PCV_7.2(Last update)
 =========================================================================
-The latest version:  MV_2.4    PCV_7.2
+The latest version:  MV_2.5
 '''
 
 import random
@@ -458,12 +461,19 @@ class BlackjackGame:
         if self.player.current_pp != 0:
             if self.player.hand[0].rank == self.player.hand[1].rank:
                 block()
-                if self.player.hand[0].suit == "♥" and self.player.hand[1].suit == "♦" or self.player.hand[0].suit == "♦" and self.player.hand[1].suit == "♥" or self.player.hand[0].suit == '♠' and self.player.hand[1].suit == '♣' or self.player.hand[0].suit == '♣' and self.player.hand[1].suit == '♠':
-                    print("Congratulation! You get a Perfect Pair!\nPay 1 : 12. You win:",self.player.current_pp*12)
+                if self.player.hand[0].suit == self.player.hand[1].suit:
+                    if self.player.hand[0].rank == "A":
+                        print("Congratulation! You get a Perfect Aces!\nPay 1 : 50. You win:",self.player.current_pp*50)
+                        self.player.money += self.player.current_pp*50
+                    else:
+                        print("Congratulation! You get a Perfect Pair!\nPay 1 : 10. You win:",self.player.current_pp*10)
+                        self.player.money += self.player.current_pp*10
+                elif self.player.hand[0].suit == "♥" and self.player.hand[1].suit == "♦" or self.player.hand[0].suit == "♦" and self.player.hand[1].suit == "♥" or self.player.hand[0].suit == '♠' and self.player.hand[1].suit == '♣' or self.player.hand[0].suit == '♣' and self.player.hand[1].suit == '♠':
+                    print("Congratulation! You get a Colour Pair!\nPay 1 : 6. You win:",self.player.current_pp*6)
                     self.player.money += self.player.current_pp*25
                 else:
-                    print("Congratulation! You get a Pair!\nPay 1 : 5. You win:",self.player.current_pp*5)
-                    self.player.money += self.player.current_pp*5
+                    print("Congratulation! You get a Pair!\nPay 1 : 4. You win:",self.player.current_pp*4)
+                    self.player.money += self.player.current_pp*4
 
         ## Side-bet  21+3
         if self.player.current_21_p_3 != 0:
@@ -511,8 +521,12 @@ class BlackjackGame:
 
             if self.player.hand[0].rank == self.player.hand[1].rank == self.dealer.hand[0].rank:
                 block()
-                print("Congratulation! You win 21+3! (Three of a kind)\nPay 1 : 30. You win: ",self.player.current_21_p_3*30)
-                self.player.money += self.player.current_21_p_3 * 30
+                if self.player.hand[0].suit == self.player.hand[1].suit == self.dealer.hand[0].suit:
+                    print("Congratulation! You win 21+3! (Rank 3 of a kind)\nPay 1 : 100. You win: ",self.player.current_21_p_3*100)
+                    self.player.money += self.player.current_21_p_3 * 100
+                else:
+                    print("Congratulation! You win 21+3! (3 of a kind)\nPay 1 : 30. You win: ",self.player.current_21_p_3*30)
+                    self.player.money += self.player.current_21_p_3 * 30
 
         ## Side-bet  Royal Match
         if self.player.current_royal != 0:
@@ -669,18 +683,21 @@ class BlackjackGame:
                 total_count[rank] += card_count[suit][rank]
 
         # Print table header
-        print("\n   A  2  3  4  5  6  7  8  9  X  J  Q  K  ||  T")
+        print("\n   A  2  3  4  5  6  7  8  9  X  J  Q  K")
+        # print("\n   A  2  3  4  5  6  7  8  9  X  J  Q  K  ||  T")
 
         # Print each row for suits with counts
         for suit in suits:
             row = [str(card_count[suit][rank]) for rank in ranks]
             total = sum(card_count[suit][rank] for rank in ranks)
-            print(f"{suit}  {'  '.join(row)}  || {total}")
-        print("================================================")
+            print(f"{suit}  {'  '.join(row)}")
+            # print(f"{suit}  {'  '.join(row)}  || {total}")
+        # print("================================================")
+        block()
         total_row = [f"{total_count[rank]:02}" for rank in ranks]
         total_sum = sum(total_count[rank] for rank in ranks)
-        print(f"   {' '.join(total_row)} || {total_sum}")
-
+        print(f"  {' '.join(total_row)}")
+        # print(f"   {' '.join(total_row)} || {total_sum}")
         print()
 
 # Main program loop

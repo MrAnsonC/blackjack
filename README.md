@@ -72,43 +72,50 @@ MV_2.3
 MV_2.4 on GitHub in 23 of September, 2024. 2320(NZST, GMT+12)
 -- Dealer Bust side bet
 -- Fire 21
+
+MV_2.5 on GitHub in 24 of September, 2024. 2329(NZST, GMT+12)
+-- 4 Decks in games
+-- Add the side bet odds
+
 =========================================================================
     Type of Side bet                |     Odds
 ==================================================
 Perfect Pair:                       |
 --------------------------------------------------
-Pair:                               |    1 : 5
-Getting same colour Pair:           |    1 : 12
+Mixed Pair                          |    1 : 4
+Colour Pair                         |    1 : 6
+Perfect Pair                        |    1 : 10
+Perfect Aces                        |    1 : 50 
 ==================================================
 21+3:                               |
 --------------------------------------------------
-Player and Dealer Flush:            |    1 : 5
-Player and Dealer Straight:         |    1 : 10
-Player and Dealer Same Ranks:       |    1 : 30
-Player and Dealer Straight Flush:   |    1 : 40
+Flush                               |    1 : 5
+Straight                            |    1 : 10
+Three of a King (Same Ranks)        |    1 : 30
+Straight Flush                      |    1 : 40
+Suired Three of a King (Same Suits) |    1 : 100
 ==================================================
 Royal Match:                        |
 --------------------------------------------------
-Player Flush:                       |    2 : 5
-Player suit and get "Q"&"K":        |    1 : 25
+Player Flush                        |    2 : 5
+Player suit and get "Q"&"K"         |    1 : 25
 ==================================================
 Dealer Bust:                        |
 --------------------------------------------------
-Dealer get 3 cards and bust:        |    1 : 1
-Dealer get 4 cards and bust:        |    1 : 2
-Dealer get 5 cards and bust:        |    1 : 10
-Dealer get 6 cards and bust:        |    1 : 50
-Dealer get 7 cards and bust:        |    1 : 100
-Dealer get 8+ cards and bust:       |    1 : 250
+Dealer get 3 cards and bust         |    1 : 1
+Dealer get 4 cards and bust         |    1 : 2
+Dealer get 5 cards and bust         |    1 : 10
+Dealer get 6 cards and bust         |    1 : 50
+Dealer get 7 cards and bust         |    1 : 100
+Dealer get 8+ cards and bust        |    1 : 250
 ==================================================
 Fire 21:  (Original 3 cards)        |
 --------------------------------------------------
-First 3 cards = 19:                 |    1 : 1
-First 3 cards = 20:                 |    1 : 2
-First 3 cards = 21:                 |    1 : 4
-  |-> With same flush:              |    1 : 20
-  --> 3 Cards are 7:                |    1 : 100
-
+First 3 cards = 19                  |    1 : 1
+First 3 cards = 20                  |    1 : 2
+First 3 cards = 21                  |    1 : 4
+  |-> With same flush               |    1 : 20
+  --> 3 Cards are 7                 |    1 : 100
 =========================================================================
 
 Special mode: SP_War_of_Casino(Core MV_2.2)
