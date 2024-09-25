@@ -166,6 +166,26 @@ def block():
 def block_end():
     print("=======================END==GAME========")
 
+# Side bet input
+def get_side_bet_input(message):
+    while True:
+        try:
+            amount = input(message)
+            if amount == "":
+                return 0
+            amount = int(amount)
+            if amount < 0:
+                block()
+                print("Please enter a positive number.")
+                block()
+            else:
+                return amount
+        except ValueError:
+            block()
+            print("Invalid input. Enter a valid number.")
+            block()
+
+
 # Result of card
 def showing_result(player, dealer):
     block()
@@ -199,10 +219,6 @@ class Deck:
         random.shuffle(self.cards)
 
     def deal_card(self):
-        if len(self.cards) <  45:
-            print("Card have been reset!")
-            self.generate_deck()
-            self.shuffle()
         return self.cards.pop()
 
 # Define player class
@@ -726,6 +742,11 @@ if __name__ == "__main__":
             print("\n"*20)
             
         print(f"Player's Money: {int(game.player.money)}")
+
+        if len(game.deck.cards) < 45:
+            print("Card have been reset!")
+            game.deck.generate_deck()
+            game.deck.shuffle()
         
         while True:
             bet_amount = input("Place your bet amount (0 to quit): ")
@@ -752,131 +773,27 @@ if __name__ == "__main__":
                 
         ## Side bet 
         if 1 in result:
-            while True:
-                try:
-                    i_pp_amount = 0
-                    i_pp_amount = input("Place your Perfect Pair bet: ")
-
-                    ## If user enters nothing, pp_amount = 0
-                    if i_pp_amount == "":
-                        pp_amount = 0
-                    else:
-                        pp_amount = int(i_pp_amount)
-                        
-                    if pp_amount < 0:
-                        block()
-                        print("Please enter a positive number.")
-                        block()
-                    else:
-                        break  # Valid input, break out of the loop
-                except ValueError: 
-                    block()
-                    print("Invalid input. Enter a valid number.")
-                    block()
+            pp_amount = get_side_bet_input("Place your Perfect Pair bet: ")
         else:
             pp_amount = 0
 
         if 2 in result:
-            while True:
-                try:
-                    i_24_amount = 0
-                    Twenty4_amount = 0
-                    i_24_amount = input("Place your 21+3 bet: ")
-                    
-                    ## If user enters nothing, pp_amount = 0
-                    if i_24_amount == "":
-                        i_24_amount = 0
-                    else:
-                        Twenty4_amount = int(i_24_amount)
-                        
-                    if Twenty4_amount < 0:
-                        block()
-                        print("Please enter a positive number.")
-                        block()
-                    else:
-                        break  # Valid input, break out of the loop
-                except ValueError:
-                    block()
-                    print("Invalid input. Enter a valid number.")
-                    block()
+            Twenty4_amount = get_side_bet_input("Place your 21+3 bet: ")
         else:
             Twenty4_amount = 0
 
         if 3 in result:
-            while True:
-                try:
-                    i_royal_match_amount = 0
-                    royal_match_amount = 0
-                    i_royal_match_amount = input("Place your Royal Match bet: ")
-                    
-                    ## If user enters nothing, royal_match_amount = 0
-                    if i_royal_match_amount == "":
-                        i_royal_match_amount = 0
-                    else:
-                        royal_match_amount = int(i_royal_match_amount)
-                        
-                    if royal_match_amount < 0:
-                        block()
-                        print("Please enter a positive number.")
-                        block()
-                    else:
-                        break  # Valid input, break out of the loop
-                except ValueError:
-                    block()
-                    print("Invalid input. Enter a valid number.")
-                    block()
+            royal_match_amount = get_side_bet_input("Place your Royal Match bet: ")
         else:
             royal_match_amount = 0
 
         if 4 in result:
-            while True:
-                try:
-                    i_too_many_amount = 0
-                    too_many_amount = 0
-                    i_too_many_amount = input("Place your Dealer Bust bet: ")
-                    
-                    ## If user enters nothing, too_many_amount = 0
-                    if i_too_many_amount == "":
-                        i_too_many_amount = 0
-                    else:
-                        too_many_amount = int(i_too_many_amount)
-                        
-                    if too_many_amount < 0:
-                        block()
-                        print("Please enter a positive number.")
-                        block()
-                    else:
-                        break  # Valid input, break out of the loop
-                except ValueError:
-                    block()
-                    print("Invalid input. Enter a valid number.")
-                    block()
+            too_many_amount = get_side_bet_input("Place your Dealer Bust bet: ")
         else:
             too_many_amount = 0
 
         if 5 in result:
-            while True:
-                try:
-                    i_fire_3_amount = 0
-                    fire_3_amount = 0
-                    i_fire_3_amount = input("Place your Fire 3 bet: ")
-                    
-                    ## If user enters nothing, fire_3_amount = 0
-                    if i_fire_3_amount == "":
-                        i_fire_3_amount = 0
-                    else:
-                        fire_3_amount = int(i_fire_3_amount)
-                        
-                    if fire_3_amount < 0:
-                        block()
-                        print("Please enter a positive number.")
-                        block()
-                    else:
-                        break  # Valid input, break out of the loop
-                except ValueError:
-                    block()
-                    print("Invalid input. Enter a valid number.")
-                    block()
+            fire_3_amount = get_side_bet_input("Place your Fire 3 bet: ")
         else:
             fire_3_amount = 0
             
